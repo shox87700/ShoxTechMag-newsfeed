@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Iphone News Page {% endblock title %}
+
+{% block content %}
+
+    {% for iphone in iphone_news %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <a href="{{ news.get_absolute_url }}">
+                    <img src="{{ iphone.image.url }}" alt="{{ iphone.title }}" style="width:40%">
+                    <h2>{{ iphone.title }}</h2>
+                    <p>{{ iphone.body | truncatewords:30  }}</p>
+                        </a>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+
+
+{% endblock content %}

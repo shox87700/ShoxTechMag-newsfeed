@@ -1,0 +1,77 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Contact Page{% endblock title %}
+{% block content %}
+  <section id="contentSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="left_content">
+          <div class="contact_area">
+            <h2>Contact Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labolore magna aliqua. Ut enim ad minim veniam. Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <form action="#" class="contact_form" method="POST">{% csrf_token %}
+              <input class="form-control" type="text" placeholder="Name*" name="name">
+              <input class="form-control" type="email" placeholder="Email*" name="email">
+              <textarea class="form-control" cols="30" rows="10" placeholder="Message*" name="message"></textarea>
+                <br>
+              <input type="submit" value="Send Message">
+            </form>
+          </div>
+        </div>
+      </div>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="right_bar">
+
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Side Ad</span></h2>
+                <div class="singleleft_inner"> <a href="#"><img alt="" src="{% static 'images/262x218.jpg' %}"></a></div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Blog Archive</span></h2>
+               <div class="singleleft_inner">
+                  <div class="blog_archive">
+                    <form action="#">
+                      <select>
+                        <option value="">Our categories</option>
+                        {% for category in categories %}
+                        <option>{{ category.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Labels</span></h2>
+                <div class="singleleft_inner">
+                  <ul class="label_nav">
+                    <li><a href="#">Arts</a></li>
+                    <li><a href="#">Cinema</a></li>
+                    <li><a href="#">Comedy</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Tourism</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Nature</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Links</span></h2>
+                <div class="singleleft_inner">
+                  <ul class="link_nav">
+                    <li><a href="#">Blog Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Error Page</a></li>
+                    <li><a href="#">Wpfreeware</a></li>
+                    <li><a href="#">Facebook Account</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+ {% endblock content %}

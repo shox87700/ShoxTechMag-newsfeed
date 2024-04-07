@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Xiaomi News Page {% endblock title %}
+
+{% block content %}
+
+{% for xiaomi in xiaomi_news %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <img src="{{ xiaomi.image.url }}" alt="{{ xiaomi.title }}" style="width:40%">
+                <h2>{{ xiaomi.title }}</h2>
+                <p>{{ xiaomi.body | truncatewords:30  }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% endblock content %}

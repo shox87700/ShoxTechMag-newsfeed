@@ -1,0 +1,256 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% load hitcount_tags %}
+{% block title %}Home Page{% endblock title %}
+{% block content %}
+
+
+
+<div class="col-lg-12 col-md-7 col-sm-8 col-xs-12">
+  <div class="thumbnail_slider_area">
+
+    <div class="owl-carousel owl-theme">
+      <!-- Add the owl-theme class to enable theme styling -->
+      {% for news in news_list %}
+      <div class="signle_iteam"><a href="{{ news.get_absolute_url}}"><img src="{{ news.image.url }}" alt=""></a>
+        <div class="sing_commentbox slider_comntbox">
+          <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+          <p><i class="fa fa-eye" aria-hidden="true" style="color: white"></i>{% get_hit_count for news %}</p>
+          <a href="#"><i class="fa fa-comments"></i>{{ comment_count }} ta izoh</a>
+
+          <p>{{ news.body | truncatewords:15 }}</p>
+        </div>
+
+        <a class="slider_tittle" href="{{ news.get_absolute_url}}">{{ news.title | truncatewords:5   }}</a>
+
+      </div>
+      <!-- Add more slides as needed -->
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+    <section id="contentbody">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+          <div class="row">
+            <div class="left_bar">
+              <div class="single_leftbar">
+                <h2><span>Recent Post</span></h2>
+                <div class="singleleft_inner">
+                  <ul class="recentpost_nav wow fadeInDown">
+                    {% for news in news_list %}
+                    <li><a href="{{ news.get_absolute_url}}"><img src="{{ news.image.url }}" alt=""></a> <a class="recent_title" href="pages/single_page.html"> {{ news.title | truncatewords:5 }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Side Add</span></h2>
+                <div class="singleleft_inner"> <a href="#"><img src="{% static 'images/150x600.jpg' %}" alt=""></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-8 col-sm-8 col-xs-12">
+          <div class="row">
+            <div class="middle_bar">
+              <div class="featured_sliderarea">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <a class="left left_slide" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a> <a class="right right_slide" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </a></div>
+              </div>
+              <div class="single_category wow fadeInDown">
+                <div class="category_title"> <a href="{% url 'iphone_news_page' %}">iPhone Category</a></div>
+                <div class="single_category_inner">
+                  <ul class="catg_nav">
+                    {% for iphone in local_news %}
+                    <li>
+                      <div class="catgimg_container"> <a class="catg1_img" href="{{ iphone.get_absolute_url}}"> <img src="{{ iphone.image.url }}" alt=""> </a></div>
+                      <a class="catg_title" href="{{ iphone.get_absolute_url}}">{{ iphone.title }}
+                      <p>{{ iphone.body | truncatewords:45 }}</p></a>
+                      <div class="sing_commentbox">
+                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                        <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                       <p><i class="fa fa-eye" aria-hidden="true"></i>Views: {% get_hit_count for iphone %}</p>
+                   </li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="single_category  wow fadeInDown">
+                <div class="category_title"> <a href="{% url 'samsung_news_page' %}">Samsung Category</a></div>
+                <div class="single_category_inner">
+                  <ul class="catg_nav catg_nav2">
+                    {% for samsung in samsung_news %}
+                    <li>
+                      <div class="catgimg_container"> <a class="catg1_img" href="{{ samsung.get_absolute_url}}"> <img src="{{ samsung.image.url }}" alt=""> </a></div>
+                      <a class="catg_title" href="{{ samsunng.get_absolute_url}}">{{ samsung.title }}</a>
+
+                      <div class="sing_commentbox">
+                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                        <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                      <p><i class="fa fa-eye" aria-hidden="true" ></i>Views: {% get_hit_count for samsung %}</p>
+                      <p class="post-summary">{{ samsung.body | truncatewords:45 }}</p>
+                   </li>
+                   {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="category_three_fourarea  wow fadeInDown">
+                <div class="category_three">
+                  <div class="single_category">
+                    <div class="category_title"> <a href="{% url 'xiaomi_news_page' %}">Xiaomi Category</a></div>
+                    <div class="single_category_inner">
+                      <ul class="catg_nav catg_nav3">
+                        {% for xiaomi in xiaomi_news %}
+                        {% if forloop.first %}
+                        <li>
+                          <div class="catgimg_container"> <a class="catg1_img" href="{{ xiaomi.get_absolute_url}}"> <img src="{{ xiaomi.image.url}}" alt=""> </a></div>
+                          <a class="catg_title" href="{{ xiaomi.get_absolute_url}}">{{ xiaomi.title }}</a>
+                          <div class="sing_commentbox">
+                            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                          <p><i class="fa fa-eye" aria-hidden="true" ></i>Views: {% get_hit_count for xiaomi %}</p>
+                          <p class="post-summary">{{ xiaomi.title }}</p>
+                       </li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                      <div class="catg3_bottompost wow fadeInDown">
+                        <ul class="catg3_snav">
+                          {% for xiaomi in xiaomi_news %}
+                        {% if forloop.counter > 1 %}
+                          <li>
+                            <div class="media"> <a class="media-left" href="{{ xiaomi.get_absolute_url}}"> <img src="{{ xiaomi.image.url}}" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="{{ xiaomi.get_absolute_url}}">{{ xiaomi.title }}</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                                <p><i class="fa fa-eye" aria-hidden="true" ></i> Views{% get_hit_count for xiaomi %}</p>
+                              </div>
+                            </div>
+                         </li>
+                          {% endif %}
+                        {% endfor %}
+                                 </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="category_four wow fadeInDown">
+                  <div class="single_category">
+                    <div class="category_title"> <a href="{% url 'realmi_news_page' %}">Realmi Category</a></div>
+                    <div class="single_category_inner">
+                      {% for realmi in realmi_news %}
+                        {% if forloop.first %}
+                      <ul class="catg_nav catg_nav3">
+                        <li>
+                          <div class="catgimg_container"> <a class="catg1_img" href="{{ realmi.get_absolute_url}}"> <img src="{{ realmi.image.url }}" alt=""> </a></div>
+                          <a class="catg_title" href="{{ realmi.get_absolute_url}}"> {{ realmi.title }}</a>
+                          <div class="sing_commentbox">
+                            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                          <p><i class="fa fa-eye" aria-hidden="true" ></i>Views: {% get_hit_count for realmi %}</p>
+                          <p class="post-summary">{{ realmi.title }}</p>
+                       </li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                      <div class="catg3_bottompost wow fadeInDown">
+                        <ul class="catg3_snav">
+
+                          <li>
+                            <div class="media"> <a class="media-left" href="pages/single_page.html"> <img src="{% static 'images/70x70.jpg' %}" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+
+                              </div>
+                            </div>
+                         </li>
+                         </ul>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="single_category wow fadeInDown">
+                <div class="category_title"> <a href="{% url 'honor_news_page' %}">Honor Category</a></div>
+                <div class="single_category_inner">
+                  <ul class="catg3_snav catg5_nav">
+                    {% for honor in honor_news %}
+
+                    <li>
+                      <div class="media"> <a href="{{ honor.get_absolute_url}}" class="media-left"> <img alt="" src="{{ honor.image.url }}"> </a>
+                        <div class="media-body"> <a href="{{ honor.get_absolute_url}}" class="catg_title">{{ honor.title }}</a>
+                          <div class="sing_commentbox">
+                            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                          <p><i class="fa fa-eye" aria-hidden="true" ></i>{% get_hit_count for honor %}</p>
+                        </div>
+                      </div>
+                   </li>
+                   </li>
+
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="right_bar">
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Side Ad</span></h2>
+                <div class="singleleft_inner"> <a href="#"><img alt="" src="{% static 'images/262x218.jpg' %}"></a></div>
+              </div>
+
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Blog Archive</span></h2>
+                <div class="singleleft_inner">
+                  <div class="blog_archive">
+                    <form action="#">
+                      <select>
+                        <option value="">Our categories</option>
+                        {% for category in categories %}
+                        <option>{{ category.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Categories</span></h2>
+                <div class="singleleft_inner">
+                  <ul class="label_nav">
+                    {% for category in categories %}
+              <li><a href="{{ category.get_absolute_url}}">{{ category.name }}</a></li>
+              {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="single_leftbar wow fadeInDown">
+                <h2><span>Links</span></h2>
+                <div class="singleleft_inner">
+                  <ul class="link_nav">
+                    <a href="{% url 'home_page' %}">Home<i class="fa fa-home" aria-hidden="true"></i></a>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="{% url '404_page' %}">Error Page</a></li>
+                    <li><a href="#">Wpfreeware</a></li>
+                    <li><a href="#">Facebook Account</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+{% endblock content %}

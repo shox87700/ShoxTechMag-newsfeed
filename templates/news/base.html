@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+{% load hitcount_tags %}
+<html>
+<head>
+<meta charset="utf-8">
+  <title>{% block title %} {% endblock title %}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/li-scroller.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+</head>
+<style>.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #0099CC;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}</style>
+<body>
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
+
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+  <header id="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="header_top">
+          <div class="header_top_left">
+            <div class="topnav">
+              <a href="{% url 'home_page' %}">Home<i class="fa fa-home" aria-hidden="true"></i></a>
+              <a href="#">Shortcodes</a>
+              <a href="{% url 'contact_page' %}">Contact<i class="fa-solid fa-address-book" aria-hidden="true"></i></a>
+              <a href="{% url '404_page' %}">404 Page</a>
+              {% if user.is_authenticated and user.is_superuser %}
+              <li><a href="{% url 'admin_page' %}">Admin Page</a></li>
+              {% endif %}
+            </div>
+          <div class="header_top_right">
+                {% if request.user.is_authenticated %}
+                <p><a href="{% url 'logout' %}" style="color:yellow">Logout</a></p>
+                <p><a href="{% url 'user_profile' %}" style="color:red">My profile</a></p>
+                {% else %}
+                <p><a href="{% url 'login' %}" style="color:red">Saytga kirish</a></p>
+                {% endif %}
+              <p>{% now "jS F Y H:i" %}</p>
+               <div class="header_search">
+                <button id="searchIcon"><i class="fa fa-search"></i></button>
+
+        <div id="shide">
+          <div id="search-hide">
+            <form method="get" action="{% url 'search_results' %}">
+              <input type="search" name="q" size="40" placeholder="Search here ..." class="form-control">
+            </form>
+            <button class="remove"><span><i class="fa fa-times"></i></span></button>
+          </div>
+        </div>
+
+
+      </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="header_bottom">
+        <div class="logo_area"><a class="logo" href="{% url 'home_page' %}"><b>Shox</b>TechMag <span>A Techno News Feed   (by Jahonov)</span></a></div>
+        <div class="top_addarea"><a href="#"><img src="{% static 'images/banner.jpg' %}" alt=""></a></div>
+      </div>
+      </div>
+    </div>
+
+    </div>
+  </header>
+    <div class="latest_newsarea"> <span>Latest News</span>
+      <ul id="ticker01" class="news_sticker">
+        {% for news in latest_news %}
+        <li><a href="{{ news.get_absolute_url}}"><img src="{{ news.images.url }}">{{ news.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+      <footer id="footer">
+      <div class="footer_top">
+        <div class="col-lg-3 col-md-3 col-sm-6">
+          <div class="single_footer_top wow fadeInLeft">
+            <h2>Follow By Email</h2>
+            <div class="subscribe_area">
+              <p>"Subscribe here to get our newsletter, it is safe just Put your Email and click subscribe"</p>
+              <form action="#">
+                <div class="subscribe_mail">
+                  <input class="form-control" type="email" placeholder="Email Address">
+                  <i class="fa fa-envelope"></i></div>
+                <input class="submit_btn" type="submit" value="Submit">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6">
+          <div class="single_footer_top wow fadeInRight">
+            <h2>Labels</h2>
+            <ul class="footer_labels">
+              {% for category in categories %}
+              <li><a href="{{ category.get_absolute_url}}">{{ category.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6">
+          <div class="single_footer_top wow fadeInRight">
+            <h2>Contact Form</h2>
+            <form action="#" class="contact_form">
+              <label>Name</label>
+              <input class="form-control" type="text">
+              <label>Email*</label>
+              <input class="form-control" type="email">
+              <label>Message*</label>
+              <textarea class="form-control" cols="30" rows="10"></textarea>
+              <input class="send_btn" type="submit" value="Send">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer_bottom">
+        <div class="footer_bottom_left">
+          <p>Copyright &copy; 2045</p>
+        </div>
+        <div class="footer_bottom_right">
+          <ul>
+            <li><a class="tootlip" data-toggle="tooltip" data-placement="top" title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="tootlip" data-toggle="tooltip" data-placement="top" title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="tootlip" data-toggle="tooltip" data-placement="top" title="Googel+" href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a class="tootlip" data-toggle="tooltip" data-placement="top" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a class="tootlip" data-toggle="tooltip" data-placement="top" title="Rss" href="#"><i class="fa fa-rss"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+{% block javascript %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/jquery.li-scroller.1.0.js' %}"></script>
+<script src="{% static 'js/custom.js' %}">
+<script src="{% static 'js/html5shiv.min.js' %}"></script>
+<script src="{% static 'js/respond.min.js' %}"></script>
+
+</script>
+{% endblock javascript %}
+</body>
+</html>

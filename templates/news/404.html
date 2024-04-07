@@ -1,0 +1,18 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}404 Page{% endblock title %}
+{% block content %}
+    <section id="errorpage_body">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="errorpage_area">
+            <div class="error-title"><span>404</span></div>
+            <div class="error_content">
+              <p><i class="fa fa-hand-o-right "></i> Sorry, the page you were looking for in this blog does not exist.</p>
+              <a href="{% url 'home_page' %}">Home</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+ {% endblock content %}

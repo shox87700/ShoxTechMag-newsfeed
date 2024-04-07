@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Honor News Page {% endblock title %}
+
+{% block content %}
+
+{% for honor in honor_news %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <img src="{{ honor.image.url }}" alt="{{ honor.title }}" style="width:50%">
+                <h2>{{ honor.title }}</h2>
+                <p>{{ honor.body | truncatewords:30  }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% endblock content %}

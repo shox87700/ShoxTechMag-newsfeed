@@ -1,0 +1,22 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Realmi News Page {% endblock title %}
+
+{% block content %}
+
+{% for realmi in realmi_news %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <img src="{{ realmi.image.url }}" alt="{{ realmi.title }}" style="width:40%">
+                <h2>{{ realmi.title }}</h2>
+                <p>{{ realmi.body | truncatewords:30  }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+{% endblock content %}

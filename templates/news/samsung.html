@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Samsung News Page {% endblock title %}
+
+{% block content %}
+
+{% for samsung in samsung_news %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <img src="{{ samsung.image.url }}" alt="{{ samsung.title }}" style="width:40%">
+                <h2>{{ samsung.title }}</h2>
+                <p>{{ samsung.body | truncatewords:30  }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% endblock content %}

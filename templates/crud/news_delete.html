@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+{% block title %} {{ news.title }} {% endblock title %}
+
+{% block content %}
+
+<h2 class="text-center">Delete this news</h2>
+<form method="post">{% csrf_token %}
+<p>Do you want to delete the news headline? - {{ news.title | truncatewords:3 }}...</p>
+  <button type="submit" class="btn btn-danger ml-2">Yes, Confirm</button>
+</form>
+
+{% endblock %}
