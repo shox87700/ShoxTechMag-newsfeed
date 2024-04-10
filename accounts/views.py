@@ -70,7 +70,7 @@ def user_register(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('logout')
+    return redirect('login')
 
 def logout_page(request):
     return render(request, 'registration/logged_out.html')
