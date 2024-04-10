@@ -1,0 +1,18 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Most POPULAR News Page {% endblock title %}
+
+{% block content %}
+
+<div class="most-commented-news">
+    <h2>Eng Ko'p Kommentlangan Yangiliklar</h2>
+    <ul>
+        {% for news in most_commented_news %}
+               <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width:10%">
+            <li>{{ news.title }} - {{ news.comment_count }} komment</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

@@ -13,6 +13,10 @@ from .models import News, Category, Comment
 from .forms import ContactForm, CommentForm
 from news_project.custom_permissions import OnlyLoggedSuperUser
 
+from django.shortcuts import render
+from .models import News
+
+
 def news_list(request):
 #   news_list = News.objects.filter(status=News.Status.Published)
     news_list = News.published.all()
@@ -225,3 +229,27 @@ class SearchResultsList(ListView):
         return News.objects.filter(
             Q(title__icontains=query) | Q(body__icontains=query)
         )
+
+
+from .utils import get_most_popular_news, get_most_read_news, get_recent_comments, get_most_commented_news
+
+
+def popular_news(request):
+    # Eng ko'p ko'rilgan yangiliklarni olish
+    most_popular_news = get_most_popular_news()
+    return render(request, 'news/popular_news.html', {'most_popular_news': most_popular_news})
+
+def most_read_news(request):
+    # Eng ko'p o'qilgan yangiliklarni olish
+    most_read_news = get_most_read_news()
+    return render(request, 'news/most_read_news.html', {'most_read_news': most_read_news})
+
+def recent_comments(request):
+    # Eng so'nggi kommentlar ro'yxatini olish
+    recent_comments = get_recent_comments()
+    return render(request, 'news/recent_comments.html', {'recent_comments': recent_comments})
+
+def most_commented_news(request):
+    # Eng ko'p kommentlarni o'z ichiga olgan yangiliklarni olish
+    most_commented_news = get_most_commented_news()
+    return render(request, 'news/most_commented_news.html', {'most_commented_news': most_commented_news})

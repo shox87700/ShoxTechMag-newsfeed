@@ -9,7 +9,7 @@
 
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
-    <a href="" onclick='this.parentNode.submit(); return false;'>Saytdan chiqish</a>
+    <a href="{% url 'logout' %}" onclick='this.parentNode.submit(); return false;'>Saytdan chiqish</a>
 </form>
 
 {% endblock content %}

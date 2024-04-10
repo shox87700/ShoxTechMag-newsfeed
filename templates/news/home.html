@@ -208,7 +208,16 @@
                 <h2><span>Side Ad</span></h2>
                 <div class="singleleft_inner"> <a href="#"><img alt="" src="{% static 'images/262x218.jpg' %}"></a></div>
               </div>
-
+              <div class="single_leftbar wow fadeInDown">
+                <ul class="nav nav-tabs custom-tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="{% url 'popular_news' %}" >Most Popular</a></li>
+                  <li role="presentation"><a href="{% url 'most_read_news' %}">Most Reader</a></li>
+                  <li role="presentation"><a href="{% url 'recent_comments' %}">Recent Comment</a></li>
+                  <li role="presentation"><a href="{% url 'most_commented_news' %}">Eng ko'p koment yig'gan newslar</a></li>
+                  <li role="presentation"><a href="{% url 'news_create' %}">news create</a></li>
+                </ul>
+                </div>
+              </div>
               <div class="single_leftbar wow fadeInDown">
                 <h2><span>Blog Archive</span></h2>
                 <div class="singleleft_inner">

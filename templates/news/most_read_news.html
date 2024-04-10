@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Most POPULAR News Page {% endblock title %}
+
+{% block content %}
+
+<div class="most-read-news">
+    <h2>Eng Ko'p O'qilgan Yangiliklar</h2>
+    <ul>
+        {% for news in most_read_news %}
+               <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width:10%">
+            <li>{{ news.title }} - {{ news.read_count }} marta o'qilib</li>
+
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Most POPULAR News Page {% endblock title %}
+
+{% block content %}
+
+<div class="recent-comments">
+    <h2>Eng So'nggi Kommentlar</h2>
+    <ul>
+        {% for comment in recent_comments %}
+            <li>{{ comment.text }} - {{ comment.created_time }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

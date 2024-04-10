@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Most POPULAR News Page {% endblock title %}
+
+{% block content %}
+
+<div class="popular-news">
+    <h2>Eng Ko'p Ko'rilgan Yangiliklar</h2>
+    <ul>
+        {% for news in most_popular_news %}
+       <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width:20%">
+            <li>{{ news.title}}</li>
+        <li>{{ news.body | truncatewords:30}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

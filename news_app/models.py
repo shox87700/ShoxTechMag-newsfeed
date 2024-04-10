@@ -18,8 +18,10 @@ class Category(models.Model):
 class News(models.Model):
 
     class Status(models.TextChoices):
-        Draft = "DF", "Draft"
         Published = "PB", "Published"
+
+    views = models.PositiveIntegerField(default=0)
+    read_count = models.PositiveIntegerField(default=0)
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
@@ -33,7 +35,7 @@ class News(models.Model):
     updated_Time = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2,
                               choices=Status.choices,
-                              default=Status.Draft
+                              default=Status.Published
                               )
     objects = models.Manager() # default manager
     published = PublishedManager()

@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import news_list, news_detail, homePageView, contactPageView, errorPageView, categoryarchivePageView, \
     IphoneNewsView, SamsungNewsView, RealmiNewsView, HonorNewsView, XiaomiNewsView, NewsDeleteView, NewsUpdateView, \
-    NewsCreateView, admin_page_view, SearchResultsList
+    NewsCreateView, admin_page_view, SearchResultsList, popular_news, most_read_news, recent_comments, \
+    most_commented_news
 
 urlpatterns = [
     path('', homePageView.as_view(), name="home_page"),
@@ -20,5 +21,9 @@ urlpatterns = [
     path('xiaomi-news/', XiaomiNewsView.as_view(), name="xiaomi_news_page"),
     path('adminpage/', admin_page_view, name='admin_page'),
     path('searchresult/', SearchResultsList.as_view(), name="search_results"),
+    path('popular/', popular_news, name='popular_news'),
+    path('most-read/', most_read_news, name='most_read_news'),
+    path('recent-comments/', recent_comments, name='recent_comments'),
+    path('most-commented/', most_commented_news, name='most_commented_news'),
 
 ]
