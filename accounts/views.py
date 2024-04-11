@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
@@ -73,7 +73,7 @@ def logout_view(request):
     return redirect('login')
 
 def logout_page(request):
-    return render(request, 'registration/logged_out.html')
+    return render(request, 'registration/logout.html')
 
 
 class SignUpView(CreateView):
@@ -141,3 +141,10 @@ class EditUserView (LoginRequiredMixin,View):
             profile_form.save()
             return redirect('user_profile')
 
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        # Chiqish qilgandan so'ng qayerga yo'naltirish kerakligini belgilang,
+        # masalan, asosiy sahifaga yo'naltiramiz.
+        return HttpResponseRedirect(reverse('home_page'))

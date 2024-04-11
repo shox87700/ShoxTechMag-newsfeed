@@ -6,7 +6,6 @@
 
     <h2>Logout from website - Logout</h2>
     <p>You are going to log out from website. | <a href="{% url 'login' %}"> Login</a></p>
-
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <a href="{% url 'logout' %}" onclick='this.parentNode.submit(); return false;'>Saytdan chiqish</a>
